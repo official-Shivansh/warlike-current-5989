@@ -61,7 +61,11 @@ Recipe Swap is a community-based recipe sharing platform that allows users to sh
 
 ![4](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/d58f7302-122d-4afb-9fae-f7798ef09b83)
 
+- **Single Product Page** : Here you can see the additional information of the single recipe. You can save, print, rate, share the recipe.
+
 ![5](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/f90b7a9e-ab1a-49ee-bef8-f3a3752c4592)
+
+- **User-Profile** : In this page you can see the user information. You can add, delete, edit, review your own recipe. Additional functionality is that user can also change the password.
 
 ![6](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/e2d6ba64-cc88-4f80-83cf-da01b6ff32fd)
 
