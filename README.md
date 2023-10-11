@@ -46,11 +46,13 @@ Recipe Swap is a community-based recipe sharing platform that allows users to sh
 
 ## Screenshot
 ### User Side:
-- Landing-Page: This is a landing page following a clean and user-friendly design. Here you can see some static information and dynanic randing for the recipe, you can search and also access the menu items. On the landing page if you click on any recipe you can access the extra information about that recipe(Only for authorized users)
+- **Landing-Page**: This is a landing page following a clean and user-friendly design. Here you can see some static information and dynanic randing for the recipe, you can search and also access the menu items. On the landing page if you click on any recipe you can access the extra information about that recipe(Only for authorized users)
 ![1](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/2b7f5a2c-18ed-4d0b-8e7d-281c8e99fb46)
 
 ![2](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/36e41b57-0ed6-4e18-8de8-fddec9f14cdb)
 
+- **User-Registration/Login Page** : User can register your self with username, email, password and for login use username, password. If you forget the password you can click on the forget password.
+- **Admin-Login** : Use Email :- admin@admin.com | Password :- admin
 ![3](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/0e67dab5-8848-4f78-9aba-e429908d4076)
 
 ![4](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/d58f7302-122d-4afb-9fae-f7798ef09b83)
