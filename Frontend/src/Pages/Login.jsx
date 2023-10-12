@@ -13,9 +13,12 @@ import { USER_FAIL, USER_LOGIN_SUCCESS } from '../Redux/actionTypes'
 import Cookies from "js-cookie"
 import { userlogin } from '../Redux/authReducer/action'
 import { Helmet } from 'react-helmet'
+import { useAuth0 } from "@auth0/auth0-react";
 
 export function Login() {
-
+    const {user, loginWithRedirect, isAuthenticated,logout} = useAuth0();
+    // console.log("auth zero user data",user.name)
+    console.log("auth ",isAuthenticated)
     const lock = <FontAwesomeIcon size='md' icon={faLock} />
     const google = <FontAwesomeIcon size='lg' icon={faGoogle} />
     const facebook = <FontAwesomeIcon size='lg' icon={faFacebook} />
@@ -145,7 +148,8 @@ export function Login() {
                                 <span style={{display:"block",width:"100%", height:"1px", backgroundColor:"rgb(219, 219, 219)"}}></span>
                             </Flex><br/>
 
-                            <Button leftIcon={google} bg="#4285F4" _hover={{bg:"#4285F4"}} color="white" w="100%">Log in with Google</Button>
+                            <Button leftIcon={google} bg="#4285F4" _hover={{bg:"#4285F4"}} color="white" w="100%" onClick={(e) => loginWithRedirect(e)} >Log in with Google</Button>
+                            <Button leftIcon={google} bg="#4285F4" _hover={{bg:"#4285F4"}} color="white" w="100%" onClick={(e) => logout()} >Logout in with Google</Button>
                             <Button leftIcon={facebook} mt="6px" w="100%" bg="#3B5998" _hover={{bg:"#3B5998"}} color="white">Log in with Facebook</Button>
                         </FormControl>
                     </form>
