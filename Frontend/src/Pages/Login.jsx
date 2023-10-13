@@ -13,12 +13,12 @@ import { USER_FAIL, USER_LOGIN_SUCCESS } from '../Redux/actionTypes'
 import Cookies from "js-cookie"
 import { userlogin } from '../Redux/authReducer/action'
 import { Helmet } from 'react-helmet'
-import { useAuth0 } from "@auth0/auth0-react";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, githubProvider, googleProvider } from "../firbase/firebase";
+
 
 export function Login() {
-    const {user, loginWithRedirect, isAuthenticated,logout} = useAuth0();
-    // console.log("auth zero user data",user.name)
-    console.log("auth ",isAuthenticated)
     const lock = <FontAwesomeIcon size='md' icon={faLock} />
     const google = <FontAwesomeIcon size='lg' icon={faGoogle} />
     const facebook = <FontAwesomeIcon size='lg' icon={faFacebook} />
@@ -28,6 +28,7 @@ export function Login() {
 
     const [show,setShow] = useState(false);
     const [formdata,setFormdata] = useState({email:"",password:""});
+    const { email, paasword } = formdata;
     const navigate = useNavigate();
     const toast = useToast();
     const token = Cookies.get("login_token");
@@ -83,16 +84,38 @@ export function Login() {
                     duration: 3000,
                     isClosable: true,
                 })
-            }else{
-                toast({
-                    title: `Something Went Wrong, Try again!!`,
-                    status: 'error',
-                    position: "bottom",
-                    duration: 3000,
-                    isClosable: true,
-                })
             }
-            
+            // else{
+            //     toast({
+            //         title: `Something Went Wrong, Try again!!`,
+            //         status: 'error',
+            //         position: "bottom",
+            //         duration: 3000,
+            //         isClosable: true,
+            //     })
+            // }
+            else {
+                 signInWithEmailAndPassword(auth, email, paasword)
+                  .then((userCredential) => {
+                    const user = userCredential.user;
+                    localStorage.setItem("username", JSON.stringify(email));
+                    // setData(loginInit);
+                    setFormdata({email:"",password:""})
+                    // dispatch({ type: ISAUTH });
+                    dispatch({type:USER_LOGIN_SUCCESS})
+                    navigate("/");
+                  })
+                  .catch((error) => {
+                    let errorCode = error.code;
+                    errorCode = errorCode.split("/");
+                    const errorMessage = error.message;
+                    toast({
+                      title: errorCode[1],
+                      status: "error",
+                      isClosable: true,
+                    });
+                  });
+              }
         }).catch((err)=>{
             dispatch({type:USER_FAIL})
             toast({
@@ -108,6 +131,32 @@ export function Login() {
     if(token && name){
         return <Navigate to="/" />
     }
+    const signInWithGoogle = async () => {
+        await signInWithPopup(auth, googleProvider)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+            // localStorage.setItem("username", JSON.stringify(user.email));
+            // localStorage.setItem("username1", JSON.stringify(user.accessToken));
+            Cookies.set("login_token",`${user.accessToken}`,{expires:7})
+            Cookies.set("login_name",`${user.displayName}`,{expires:7})
+            Cookies.set("login_email",`${user.email}`,{expires:7})
+            // setData(registerInit);
+            // dispatch({ type: ISAUTH });
+            dispatch({type:USER_LOGIN_SUCCESS})
+            navigate("/");
+          })
+          .catch((error) => {
+            let errorCode = error.code;
+            errorCode = errorCode.split("/");
+            const errorMessage = error.message;
+            toast({
+              title: errorCode[1],
+              status: "error",
+              isClosable: true,
+            });
+          });
+      };
 
     return (
         <Flex justifyContent="space-between" w="100%" direction={{base:"column",sm:"column",md:"row",lg:"row",xl:"row"}}>
@@ -148,8 +197,8 @@ export function Login() {
                                 <span style={{display:"block",width:"100%", height:"1px", backgroundColor:"rgb(219, 219, 219)"}}></span>
                             </Flex><br/>
 
-                            <Button leftIcon={google} bg="#4285F4" _hover={{bg:"#4285F4"}} color="white" w="100%" onClick={(e) => loginWithRedirect(e)} >Log in with Google</Button>
-                            <Button leftIcon={google} bg="#4285F4" _hover={{bg:"#4285F4"}} color="white" w="100%" onClick={(e) => logout()} >Logout in with Google</Button>
+                            <Button leftIcon={google} bg="#4285F4" _hover={{bg:"#4285F4"}} color="white" w="100%" onClick={signInWithGoogle} >Log in with Google</Button>
+                            
                             <Button leftIcon={facebook} mt="6px" w="100%" bg="#3B5998" _hover={{bg:"#3B5998"}} color="white">Log in with Facebook</Button>
                         </FormControl>
                     </form>

@@ -19,6 +19,7 @@
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",
     "chart.js": "^4.4.0",
+    "firebase": "^10.5.0",
     "framer-motion": "^10.16.1",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.268.0",
