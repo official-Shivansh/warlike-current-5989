@@ -74,11 +74,16 @@ Recipe Swap is a community-based recipe sharing platform that allows users to sh
 
 
 ### Admin Side:
+- **Admin-Dashboard** : Admin can login with (Email: admin@admin.com | Password: admin), after login you can see the dashboard and analyzed the growth with the help of graph.
+ 
 ![1](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/e2d7e2a1-112e-47e1-9542-846eedeb3e66)
-
 ![2](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/c738bfd6-0e2a-4255-b60b-d98aa6b4f453)
 
+- **User-Analysis** : Here admin can count and filter the user and perform the CRUD operations.
+  
 ![3](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/99487bb6-2b76-4843-a008-d5ad083e69e4)
+
+- **Product-Analysis** : Here admin can sort filter the product and also perform the CRUD operations.
 
 ![4](https://github.com/Manikantkr-1004/warlike-current-5989/assets/58412185/a394055c-830b-485d-b0b9-b6ba8e702e44)
 
